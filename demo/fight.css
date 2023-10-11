@@ -1,0 +1,70 @@
+#roll-container {
+    text-align: center;
+    padding: 20px;
+    background-color: #fff;
+}
+
+.player-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.vs {
+    font-size: 24px;
+    margin: 0 20px;
+    color: #333;
+}
+
+.player {
+    flex: 1;
+    padding: 20px;
+}
+
+img {
+    width: 100px;
+    height: auto;
+}
+
+.number {
+    opacity: 0; 
+    font-size: 36px; 
+    transition: opacity 1s ease-in-out, font-size 1s ease-in-out; 
+}
+
+
+.player .number {
+    animation: fadeIn 1s ease-in-out 0.5s forwards, scaleUp 1s ease-in-out 0.5s forwards; 
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes scaleUp {
+    to {
+        font-size: 48px;
+    }
+}
+
+.flip-vertical {
+    transform: scaleX(-1);
+}
+
+.button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #16a085;
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+Great+Primer&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="index.css">
+    <title>Dice Battle - Single Player</title>
+  
+</head>
+<body>
+    <h1>Dice Battle - Single Player</h1>
+    <div id="selector">
+        <p>Select your character</p>
+        <div class="player-container">
+            <div class="player" id="player1">
+                <h2>Player 1</h2>
+                <div class="character-list">
+                    <input type="radio" name="character-player1" id="character1-player1">
+                    <label for="character1-player1" class="character-label">
+                        Michael Jackson<br>
+                        <img src="mike.gif" alt="Character 1" id = "gif">
+                        <p>The King of Pop</p>
+                    </label>
+                  <input type="radio" name="character-player1" id="character2-player1">
+                    <label for="character1-player1" class="character-label">
+                        Phoenix Wright<br>
+                        <img src="ph.gif" alt="Character 1" id = "gif">
+                        <p>The Ace Attorney</p>
+                    </label>
+                </div>
+                <input type="checkbox" class="ready-checkbox" id="player1-ready-checkbox">
+                <label for="player1-ready-checkbox" class="ready-label">Ready</label>
+            </div>
+        </div>
+        <a href="roll.html">
+            <button class="button" id="play-button">Play</button>
+        </a>
+    </div>
+</body>
+</html>

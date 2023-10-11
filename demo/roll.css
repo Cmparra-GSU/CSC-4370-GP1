@@ -1,0 +1,72 @@
+/* Your existing CSS for roll page */
+#battle-container {
+    text-align: center;
+    padding: 20px;
+    background-color: #fff;
+}
+
+.player-container {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    margin-top: 20px;
+}
+
+.player img{
+    width: 45%;
+    height: auto;
+}
+
+.vs {
+    font-size: 24px;
+    margin: 0 20px; 
+    color: #333; 
+}
+
+.ready-checkbox {
+    display: none; 
+}
+
+.ready-label {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none; 
+    transition: background-color 0.2s ease;
+}
+
+.ready-checkbox:checked + .ready-label {
+    background-color: #4CAF50;
+}
+
+.ready-checkbox:checked + .ready-label::before {
+    content: "✓ ";
+}
+
+.button {
+    display: block;
+    margin: 20px auto;
+	width: 20%;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none; /* Remove default underline for links */
+}
+
+.button:hover {
+    background-color: #16a085;
+}
+
+.hidden {
+    display: none;
+}
+
+#dice-result:target {
+    display: block;
+}

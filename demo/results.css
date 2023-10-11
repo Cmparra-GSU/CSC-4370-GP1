@@ -1,0 +1,42 @@
+#results-container {
+    text-align: center;
+    padding: 20px;
+    background-color: #fff;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img {
+    width: 200px;
+    height: auto;
+    margin-top: 20px;
+}
+
+.button {
+    display: block;
+    margin: 20px auto;
+    width: 20%;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.button:hover {
+    background-color: #16a085;
+}
+
+.hidden {
+    display: none;
+}
+
+#popup:target {
+    display: block;
+}

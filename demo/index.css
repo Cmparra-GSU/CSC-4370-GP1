@@ -1,0 +1,99 @@
+body {
+    font-family: 'IM Fell Great Primer', serif;
+    text-align: center;
+    background-color: #333;
+    color: #fff;
+}
+
+#selector {
+    max-width: 40%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #222; 
+}
+
+.player-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.player {
+    flex: 1;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: border 0.3s ease-in-out;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: black;
+}
+
+.player:hover {
+    border: 2px solid #e74c3c;
+}
+
+.player-label {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #e74c3c;
+}
+
+.character-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#gif {
+    animation: playOnce 1s steps(1) forwards paused;
+    width: 40%;
+    height: auto;
+}
+
+@keyframes playOnce {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+.button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #16a085; 
+}
+
+.character-label p {
+    display: none;
+}
+
+.character-label:hover p {
+    display: block;
+    background-color: #f1c40f;
+    color: #333; 
+}
+
+.ready-checkbox:checked + .ready-label {
+    background-color: #4CAF50;
+}
+
+.ready-checkbox:checked + .ready-label::before {
+    content: "✓ ";
+}
