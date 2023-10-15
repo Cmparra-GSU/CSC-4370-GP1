@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="roll.css">
+    <title>Dice Battle - Single Player</title>
+</head>
+<body>
+    <div id="battle-container">
+        <h1>Dice Battle</h1>
+        <div class="player-container">
+            <div class="player" id="player1">
+                <h2>Player 1</h2>
+                <h3>Michael Jackson</h3>
+                <img src="mj-b.png" alt="Character 1"><br>
+                <input type="checkbox" class="ready-checkbox" id="player1-ready-checkbox">
+                <label for="player1-ready-checkbox" class="ready-label">Ready</label>
+            </div>
+             <div class="vs">vs</div>
+            <div class="player" id="cpu">
+                <h2>CPU</h2>
+                <h3>Phoenix Wright</h3>
+                <img src="ph-b.gif" alt="Character 2">
+            </div>
+        </div>
+        <a href="#dice-result" id="roll-button" class="button">Roll</a>
+        <div id="dice-result" class="hidden">
+			<a href = "fight.html">
+            <img src="dice2.gif">
+            <p>Continue</p>
+			</a>
+        </div>
+    </div>
+</body>
+</html>
