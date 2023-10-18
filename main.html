@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<head>
+  <title>Pokemon</title>
+  <link rel = "stylesheet" type = "text/css" href = "style.css" />
+</head>
+
+<div class="game">
+  <div class="opponent  player--0 player--active">
+    <div class="stats">
+      <div class="top">
+        <div class="pokeballs">
+          <div class="pokeball"></div>
+          <div class="pokeball"></div>
+          <div class="pokeball"></div>
+          <div class="pokeball"></div>
+          <div class="pokeball"></div>
+        </div>
+        <div id = "score--0" class="hp-count">100</div>
+      </div>
+      <span class="name">
+        Mich
+      </span>
+      <span class="level">
+        86
+      </span>
+      <div class="wajahat">
+        <style>
+            .health-bar {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      width: 200px;
+      height: 20px;
+      padding: 5px;
+      background: #ddd;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+      position: relative;
+    }
+    .bar {
+      background: #c54;
+      width: 100%;
+      height: 10px;
+      position: relative;
+      
+      transition: width .5s linear;
+    }
+    
+    .hit {
+      background: rgba(255,255,255,0.6);
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 0px;
+      
+      transition: width .5s linear;
+    }
+        </style>
+        <!-- .health-bar . when you subtract health that big of the bar goes white and animates down (i.e. neverwinter)
+    
+    Going to make it into like a little 8 bit character you can control, with sprites and hit points floating above health bar a-la Diablo3 or Metal Slug or any retro game.
+    
+    custom events for stuff like "hit" or whatever. Adding callbacks to character class etc. 
+    
+    animations on events e.g. hit => blinking white
+    animations on walking
+    
+    Use some available available sprite sheet for .character class to make several.
+    
+    early days...
+     -->
+    
+    
+    <div class="health-bar" data-total="1000" data-value="1000">
+        <div class="bar">
+              <div class="hit"></div>
+        </div>
+      </div>
+      
+      <br />
+      
+      <button id="iqra" class="damage random">hit random</button>
+      <button class="reset">reset</button>
+      
+      <div class="log">
+        <div>What's going on...</div>
+      </div>
+      
+      <!-- some simple "code editor" where you can highlight lines of text/code one by one and edit the text. when you hold ctrl or something everything fades out a bit and you hover over lines to bring them to full opacity -->
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+      var hitBtn = document.querySelectorAll("button.damage");
+      var reset = document.querySelector("button.reset");
+      var hBar = document.querySelector(".health-bar");
+      var bar = hBar.querySelector(".bar");
+      var hit = hBar.querySelector(".hit");
+      var logContainer = document.querySelector(".log");
+    const myButton = document.querySelector('button.damage.random.wajahat'); 
+    // myButton.addEventListener('click', function() { 
+    //   var total = parseInt(hBar.dataset.total);
+    //     var value = parseInt(hBar.dataset.value);
+    
+    //     if (value < 0) {
+    //       log("you dead, reset");
+    //       return;
+    //     }
+    
+    //     var damage = Math.floor(Math.random() * total);
+    //     var newValue = value - damage;
+    //     var barWidth = (newValue / total) * 100;
+    //     var hitWidth = (damage / value) * 100 + "%";
+    
+    //     hit.style.width = hitWidth;
+    //     hBar.dataset.value = newValue;
+    
+    //     setTimeout(function () {
+    //       hit.style.width = "0";
+    //       bar.style.width = barWidth + "%";
+    //     }, 500);
+    
+    //     log(value, damage, hitWidth);
+    
+    //     if (value < 0) {
+    //       log("DEAD");
+    //     }
+    // })
+      hitBtn.forEach(el => { 
+el.addEventListener("click", function () {
+        var total = parseInt(hBar.dataset.total);
+        var value = parseInt(hBar.dataset.value);
+    
+        if (value < 0) {
+          log("you dead, reset");
+          return;
+        }
+    
+        var damage = Math.floor(Math.random() * total);
+        var newValue = value - damage;
+        var barWidth = (newValue / total) * 100;
+        var hitWidth = (damage / value) * 100 + "%";
+    
+        hit.style.width = hitWidth;
+        hBar.dataset.value = newValue;
+    
+        setTimeout(function () {
+          hit.style.width = "0";
+          bar.style.width = barWidth + "%";
+        }, 500);
+    
+        log(value, damage, hitWidth);
+    
+        if (value < 0) {
+          log("DEAD");
+        }
+      });
+
+      }) 
+    
+      reset.addEventListener("click", function () {
+        hBar.dataset.value = hBar.dataset.total;
+        hit.style.width = "0";
+        bar.style.width = "100%";
+        log("resetting health to 1000");
+      });
+    });
+    
+    function log(_total, _damage, _hitWidth) {
+      var log = document.querySelector(".log");
+    
+      if (_damage !== undefined && _hitWidth !== undefined) {
+        var logEntry = document.createElement("div");
+        logEntry.innerHTML = "H:" + _total + " D:" + _damage + " W:" + _hitWidth +
+          " = " + (_total - _damage);
+        log.appendChild(logEntry);
+      } else {
+        var logEntry = document.createElement("div");
+        logEntry.innerHTML = _total;
+        log.appendChild(logEntry);
+      }
+    }
+    
+      </script>
+    </div>
+    </div>
+    <img id="firstImage" class="pokemon" src="char/mike.gif" alt ="A sprite of charizard" />
+    <div class="current">
+      <p class="current-label">Current</p>
+      <p class="current-score" id="current--0">0</p>
+    </div>
+  </div>
+  <div class="player   player--1">
+    <div class="stats">
+      <div class="top">
+        <div class="pokeballs">
+          <div class="pokeball"></div>
+          <div class="pokeball"></div>
+          <div class="pokeball"></div>
+          <div class="pokeball"></div>
+          <div class="pokeball"></div>
+        </div>
+        <div id = "score--1" class="hp-count">100</div>
+      </div>
+      <span class="name">
+        Phoenix Wright
+      </span>
+      <span class="level">
+        86
+      </span>
+      <div class="newWajaht">
+        <style>
+       .custom-health-bar-container {
+        margin-bottom: 20px;
+    }
+    
+    .custom-health-bar {
+        width: 250px;
+        height: 25px;
+        background: #eee;
+        border-radius: 8px;
+        position: relative;
+        margin-bottom: 15px;
+    }
+    
+    .custom-bar {
+        background: #3498db;
+        width: 100%;
+        height: 12px;
+        position: relative;
+        transition: width 0.7s ease-in-out;
+    }
+    
+    .custom-hit {
+        background: #e74c3c;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 0px;
+        transition: width 0.5s ease-in-out;
+    }
+    
+    .custom-damage, .custom-reset {
+        margin-right: 10px;
+    }
+    
+       
+       
+           </style>
+    <div class="custom-health-bar-container">
+        <div class="custom-health-bar" data-total="1200" data-value="1200">
+            <div class="custom-bar">
+                <div class="custom-hit"></div>
+            </div>
+        </div>
+        <br />
+        <button id="customHitBtn" class="custom-damage">Custom Hit</button>
+        <button id="customResetBtn" class="custom-reset">Custom Reset</button>
+    
+        <div class="custom-log">
+            <div>Custom Log:</div>
+        </div>
+    </div>
+    <script>
+       document.addEventListener('DOMContentLoaded', function () {
+    var customHitBtn = document.getElementById("customHitBtn");
+    var customResetBtn = document.getElementById("customResetBtn");
+    var customHealthBar = document.querySelector(".custom-health-bar");
+
+    customHitBtn.addEventListener("click", function () {
+        applyCustomDamage(customHealthBar);
+    });
+
+    customResetBtn.addEventListener("click", function () {
+        resetCustomHealth(customHealthBar);
+    });
+
+    function applyCustomDamage(hBar) {
+        var total = parseInt(hBar.dataset.total);
+        var value = parseInt(hBar.dataset.value);
+
+        if (value < 0) {
+            customLog("you dead, reset");
+            return;
+        }
+
+        var damage = Math.floor(Math.random() * total);
+        var newValue = value - damage;
+        var barWidth = (newValue / total) * 100;
+
+        hBar.querySelector('.custom-hit').style.width = (damage / total) * 100 + '%';
+        hBar.dataset.value = newValue;
+
+        setTimeout(function () {
+            hBar.querySelector('.custom-hit').style.width = '0';
+            hBar.querySelector('.custom-bar').style.width = barWidth + '%';
+        }, 500);
+
+        customLog("Custom Hit", damage);
+        
+        if (newValue < 0) {
+            customLog("Dead");
+        }
+    }
+
+    function resetCustomHealth(hBar) {
+        hBar.dataset.value = hBar.dataset.total;
+        hBar.querySelector('.custom-hit').style.width = '0';
+        hBar.querySelector('.custom-bar').style.width = '100%';
+        customLog("Custom Reset Health");
+    }
+
+    function customLog(action, value) {
+        var log = document.querySelector('.custom-log');
+        var logEntry = document.createElement('div');
+        logEntry.innerHTML = action + ": " + value;
+        log.appendChild(logEntry);
+    }
+});
+    </script>
+     
+    </div>
+    </div>
+    <img id="SecondImage" class="pokemon" src="ph-b.gif" alt="A gif from blastoises back sprite" />
+  </div>
+   
+    <div class="current">
+      <p class="current-label">Current</p>
+      <p class="current-score" id="current--1">0</p>
+    </div>
+  </div>
+  <img src="dice-5.png" alt="Playing dice" class="dice" />
+  <button class="btn btn--new">🔄 New game</button>
+  <button class="btn btn--roll">🎲 Roll dice</button>
+  <button class="btn btn--hold">📥 Hold</button>
+</div>
+<script>
+  'use strict';
+
+// Selecting elements
+const player0El = document.querySelector('.player--0');
+const player1El = document.querySelector('.player--1');
+const score0El = document.querySelector('#score--0');
+const score1El = document.getElementById('score--1');
+const current0El = document.getElementById('current--0');
+const current1El = document.getElementById('current--1');
+
+const diceEl = document.querySelector('.dice');
+const btnNew = document.querySelector('.btn--new');
+const btnRoll = document.querySelector('.btn--roll');
+const btnHold = document.querySelector('.btn--hold');
+
+let scores, currentScore, activePlayer, playing;
+
+// Starting conditions
+const init = function () {
+  scores = [0, 0];
+  currentScore = 0;
+  activePlayer = 0;
+  playing = true;
+
+  score0El.textContent = 0;
+  score1El.textContent = 0;
+  current0El.textContent = 0;
+  current1El.textContent = 0;
+
+  // diceEl.classList.add('hidden');
+  player0El.classList.remove('player--winner');
+  player1El.classList.remove('player--winner');
+  player0El.classList.add('player--active');
+  player1El.classList.remove('player--active');
+};
+init();
+
+const switchPlayer = function () {
+  document.getElementById(`current--${activePlayer}`).textContent = 0;
+  currentScore = 0;
+  activePlayer = activePlayer === 0 ? 1 : 0;
+  player0El.classList.toggle('player--active');
+  player1El.classList.toggle('player--active');
+};
+
+// Rolling dice functionality
+let clickCount = 0;
+
+btnRoll.addEventListener('click', function () {
+    // Increment clickCount
+    clickCount++;
+const firstOne = document.querySelector('#firstImage'); 
+const SecondOne  = document.querySelector('#SecondImage'); 
+firstOne.src = 'char/mj-f.png'
+SecondOne.src = 'char/action1.gif'
+    // 1. Generating a random dice roll
+    const dice = Math.trunc(Math.random() * 6) + 1;
+
+    // 2. Display dice
+    diceEl.classList.remove('hidden');
+    diceEl.src = `dice-${dice}.png`;
+
+    // 3. Check for rolled 1
+    // Add dice to current score
+    currentScore += dice;
+    document.getElementById(`current--${activePlayer}`).textContent = currentScore;
+    scores[activePlayer] += currentScore;
+
+    document.getElementById(`score--${activePlayer}`).textContent = scores[activePlayer];
+
+    switchPlayer();
+
+    // Check if clickCount is 2
+    if (clickCount === 2) {
+        // Call init function when clickCount is 2
+
+
+
+
+   
+        const [firstScore, secondScore] = [Number(document.querySelector('#score--0').textContent), Number(document.querySelector('#score--1').textContent)];
+console.log('wajaht', typeof(firstScore), secondScore);
+
+
+if(firstScore > secondScore) { 
+  console.log(firstScore.textContent , 'first scroe is greater '); 
+  document.addEventListener('DOMContentLoaded', function () {
+  var customHitBtn = document.getElementById("customHitBtn");
+  var customResetBtn = document.getElementById("customResetBtn");
+  var customHealthBar = document.querySelector(".custom-health-bar");
+
+  customHitBtn.addEventListener("click", function () {
+      applyCustomDamage(customHealthBar);
+  });
+
+  customResetBtn.addEventListener("click", function () {
+      resetCustomHealth(customHealthBar);
+  });
+
+  function applyCustomDamage(hBar) {
+      var total = parseInt(hBar.dataset.total);
+      var value = parseInt(hBar.dataset.value);
+
+      if (value < 0) {
+          customLog("you dead, reset");
+          return;
+      }
+
+      var damage = Math.floor(Math.random() * total);
+      var newValue = value - damage;
+      var barWidth = (newValue / total) * 100;
+
+      hBar.querySelector('.custom-hit').style.width = (damage / total) * 100 + '%';
+      hBar.dataset.value = newValue;
+
+      setTimeout(function () {
+          hBar.querySelector('.custom-hit').style.width = '0';
+          hBar.querySelector('.custom-bar').style.width = barWidth + '%';
+      }, 500);
+
+      customLog("Custom Hit", damage);
+      
+      if (newValue < 0) {
+          customLog("Dead");
+      }
+  }
+
+  function resetCustomHealth(hBar) {
+      hBar.dataset.value = hBar.dataset.total;
+      hBar.querySelector('.custom-hit').style.width = '0';
+      hBar.querySelector('.custom-bar').style.width = '100%';
+      customLog("Custom Reset Health");
+  }
+
+  function customLog(action, value) {
+      var log = document.querySelector('.custom-log');
+      var logEntry = document.createElement('div');
+      logEntry.innerHTML = action + ": " + value;
+      log.appendChild(logEntry);
+  }
+});
+const btnSecond = document.querySelector('button#customHitBtn'); 
+btnSecond.click(); 
+
+}
+else  { 
+
+
+ document.addEventListener('DOMContentLoaded', function () {
+    var hitBtnFirst = document.querySelector("#iqra");
+    var hitBtnSecond = document.querySelector("#uzair"); // Assuming you have a button with id "secondHitBtn"
+    var reset = document.querySelector("button.reset");
+    
+    var hBarFirst = document.querySelectorAll(".health-bar")[0];
+    var hBarSecond = document.querySelectorAll(".health-bar")[2];
+    
+    var barFirst = hBarFirst.querySelector(".bar");
+    var hitFirst = hBarFirst.querySelector(".hit");
+    
+    var barSecond = hBarSecond.querySelector(".bar");
+    var hitSecond = hBarSecond.querySelector(".hit");
+    
+    // Add event listener for the second hit button
+    hitBtnSecond.addEventListener("click", function () {
+        applyDamage(hBarSecond, barSecond, hitSecond);
+    });
+
+    // Modify the existing event listener for the first hit button
+    hitBtnFirst.addEventListener("click", function () {
+        applyDamage(hBarFirst, barFirst, hitFirst);
+    });
+    
+    reset.addEventListener("click", function () {
+        resetHealth(hBarFirst, barFirst, hitFirst);
+        resetHealth(hBarSecond, barSecond, hitSecond);
+    });
+
+    function applyDamage(hBar, bar, hit) {
+        var total = parseInt(hBar.dataset.total);
+        var value = parseInt(hBar.dataset.value);
+
+        if (value < 0) {
+            log("you dead, reset");
+            return;
+        }
+
+        var damage = Math.floor(Math.random() * total);
+        var newValue = value - damage;
+        var barWidth = (newValue / total) * 100;
+        var hitWidth = (damage / value) * 100 + "%";
+
+        hit.style.width = hitWidth;
+        hBar.dataset.value = newValue;
+
+        setTimeout(function () {
+            hit.style.width = "0";
+            bar.style.width = barWidth + "%";
+        }, 500);
+
+        log(value, damage, hitWidth);
+
+        if (value < 0) {
+            log("DEAD");
+        }
+    }
+
+    function resetHealth(hBar, bar, hit) {
+        hBar.dataset.value = hBar.dataset.total;
+        hit.style.width = "0";
+        bar.style.width = "100%";
+        log("resetting health to 1000");
+    }
+
+    function log(_total, _damage, _hitWidth) {
+        var log = document.querySelector(".log");
+
+        if (_damage !== undefined && _hitWidth !== undefined) {
+            var logEntry = document.createElement("div");
+            logEntry.innerHTML = "H:" + _total + " D:" + _damage + " W:" + _hitWidth +
+                " = " + (_total - _damage);
+            log.appendChild(logEntry);
+        } else {
+            var logEntry = document.createElement("div");
+            logEntry.innerHTML = _total;
+            log.appendChild(logEntry);
+        }
+    }
+});
+
+const btnFirst = document.querySelector('#iqra'); 
+btnFirst.click(); 
+
+}
+
+init();
+
+// Reset clickCount to 0
+clickCount = 0;
+
+
+    }
+});
+
+
+btnHold.addEventListener('click', function () {
+  if (playing) {
+    // 1. Add current score to active player's score
+    scores[activePlayer] += currentScore;
+    // scores[1] = scores[1] + currentScore
+
+    document.getElementById(`score--${activePlayer}`).textContent =
+      scores[activePlayer];
+
+    // 2. Check if player's score is >= 100
+    if (scores[activePlayer] >= 100) {
+      // Finish the game
+      playing = false;
+      diceEl.classList.add('hidden');
+
+      document
+        .querySelector(`.player--${activePlayer}`)
+        .classList.add('player--winner');
+      document
+        .querySelector(`.player--${activePlayer}`)
+        .classList.remove('player--active');
+    } else {
+      // Switch to the next player
+      switchPlayer();
+    }
+  }
+});
+
+btnNew.addEventListener('click', init);
+
+</script>
+
+<!-- first script -->
+
+<!-- 
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var hitBtnFirst = document.querySelector("#iqra");
+    var hitBtnSecond = document.querySelector("#uzair"); // Assuming you have a button with id "secondHitBtn"
+    var reset = document.querySelector("button.reset");
+    
+    var hBarFirst = document.querySelectorAll(".health-bar")[0];
+   
+    
+    var barFirst = hBarFirst.querySelector(".bar");
+    var hitFirst = hBarFirst.querySelector(".hit");
+    
+   
+ 
+    
+    // Add event listener for the second hit button
+
+
+    // Modify the existing event listener for the first hit button
+    hitBtnFirst.addEventListener("click", function () {
+        applyDamage(hBarFirst, barFirst, hitFirst);
+    });
+    
+    reset.addEventListener("click", function () {
+        resetHealth(hBarFirst, barFirst, hitFirst);
+        resetHealth(hBarSecond, barSecond, hitSecond);
+    });
+
+    function applyDamage(hBar, bar, hit) {
+        var total = parseInt(hBar.dataset.total);
+        var value = parseInt(hBar.dataset.value);
+
+        if (value < 0) {
+            log("you dead, reset");
+            return;
+        }
+
+        var damage = Math.floor(Math.random() * total);
+        var newValue = value - damage;
+        var barWidth = (newValue / total) * 100;
+        var hitWidth = (damage / value) * 100 + "%";
+
+        hit.style.width = hitWidth;
+        hBar.dataset.value = newValue;
+
+        setTimeout(function () {
+            hit.style.width = "0";
+            bar.style.width = barWidth + "%";
+        }, 500);
+
+        log(value, damage, hitWidth);
+
+        if (value < 0) {
+            log("DEAD");
+        }
+    }
+
+    function resetHealth(hBar, bar, hit) {
+        hBar.dataset.value = hBar.dataset.total;
+        hit.style.width = "0";
+        bar.style.width = "100%";
+        log("resetting health to 1000");
+    }
+
+    function log(_total, _damage, _hitWidth) {
+        var log = document.querySelector(".log");
+
+        if (_damage !== undefined && _hitWidth !== undefined) {
+            var logEntry = document.createElement("div");
+            logEntry.innerHTML = "H:" + _total + " D:" + _damage + " W:" + _hitWidth +
+                " = " + (_total - _damage);
+            log.appendChild(logEntry);
+        } else {
+            var logEntry = document.createElement("div");
+            logEntry.innerHTML = _total;
+            log.appendChild(logEntry);
+        }
+    }
+});
+
+</script> -->
+
+<!-- second script -->
+<!-- <script>
+        
+  document.addEventListener('DOMContentLoaded', function () {
+  var customHitBtn = document.getElementById("customHitBtn");
+  var customResetBtn = document.getElementById("customResetBtn");
+  var customHealthBar = document.querySelector(".custom-health-bar");
+
+  customHitBtn.addEventListener("click", function () {
+      applyCustomDamage(customHealthBar);
+  });
+
+  customResetBtn.addEventListener("click", function () {
+      resetCustomHealth(customHealthBar);
+  });
+
+  function applyCustomDamage(hBar) {
+      var total = parseInt(hBar.dataset.total);
+      var value = parseInt(hBar.dataset.value);
+
+      if (value < 0) {
+          customLog("you dead, reset");
+          return;
+      }
+
+      var damage = Math.floor(Math.random() * total);
+      var newValue = value - damage;
+      var barWidth = (newValue / total) * 100;
+
+      hBar.querySelector('.custom-hit').style.width = (damage / total) * 100 + '%';
+      hBar.dataset.value = newValue;
+
+      setTimeout(function () {
+          hBar.querySelector('.custom-hit').style.width = '0';
+          hBar.querySelector('.custom-bar').style.width = barWidth + '%';
+      }, 500);
+
+      customLog("Custom Hit", damage);
+      
+      if (newValue < 0) {
+          customLog("Dead");
+      }
+  }
+
+  function resetCustomHealth(hBar) {
+      hBar.dataset.value = hBar.dataset.total;
+      hBar.querySelector('.custom-hit').style.width = '0';
+      hBar.querySelector('.custom-bar').style.width = '100%';
+      customLog("Custom Reset Health");
+  }
+
+  function customLog(action, value) {
+      var log = document.querySelector('.custom-log');
+      var logEntry = document.createElement('div');
+      logEntry.innerHTML = action + ": " + value;
+      log.appendChild(logEntry);
+  }
+});
+
+ </script> -->
+</div>
